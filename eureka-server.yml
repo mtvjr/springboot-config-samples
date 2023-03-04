@@ -23,4 +23,47 @@ management:
     web:
       exposure:
         include: "*"
-   
+
+
+---
+
+spring:
+  profiles:
+   - peer1
+   - peer2
+   - peer3
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eurekaserver1:8061/eureka/,http://eurekaserver2:8062/eureka/,http://eurekaserver3:8063/eureka/
+
+---
+
+spring:
+  profiles: peer1
+server:
+  port: 8061
+eureka:
+  instance:
+    hostname: eurekaserver1
+
+---
+
+spring:
+  profiles: peer2
+server:
+  port: 8062
+eureka:
+  instance:
+    hostname: eurekaserver2
+
+---
+
+spring:
+  profiles: peer3
+server:
+  port: 8063
+eureka:
+  instance:
+    hostname: eurekaserver3
+
