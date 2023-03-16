@@ -1,6 +1,6 @@
 server:
   port: 8072
- 
+
 eureka:
   instance:
     preferIpAddress: true
@@ -9,8 +9,8 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://eurekaserver:8070/eureka/
-      
- 
+
+
 spring:
   cloud:
     loadbalancer.ribbon.enabled: false
@@ -31,13 +31,17 @@ spring:
           - Path=/license/**
           filters:
           - RewritePath=/license/(?<path>.*), /$\{path}
+        - id: google
+          uri: https://www.google.com
+          predicates:
+          - Path=/google/**
+          filters:
+          - RewritePath=/google/(?<path>.*), /$\{path}
 
 
-       
+
 management:
   endpoints:
     web:
       exposure:
         include: "*"
-        
-        
